@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko,en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>채소숲</title>
+    <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/reset.css" />
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/js/script.js" defer></script>
+    <script src="../static/js/tab.js" defer></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69b8e1f84a0fbc6485af731d54d1970a"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+    <div id="skip">
+      <a href="#main_page">본문 바로가기</a>
+    </div>
+    <div id="wrap">
+      <header id="header">
+        <div class="top_line">
+          <div class="top_flex mix_inner">
+            <h1 class="logo_default">
+              <a href="#" class="logo">
+                <img src="../static/img/logo.png" alt="로고" />
+                <span class="blind">채식숲</span>
+              </a>
+            </h1>
+            <div class="gnb_box">
+              <a href="#">회원가입</a>
+              <a href="#">로그인</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section id="section" role="main">
+        <div class="banner">
+          <div class="banner_img"></div>
+          <div class="mix_inner">
+            <div class="banner_text">
+              <p>서울 채식 식당 검색</p>
+              <span class="df_text">채식숲</span>
+              <span>입니다</span>
+            </div>
+          </div>
+        </div>
+        <div class="container_inner">
+          <h2 id="main_page" class="blind">본문</h2>
+          <div class="main_content">
+            <div class="tab_menu">
+              <div class="tab_container">
+                <ul class="tab_item" role="tablist" aria-label="본문">
+                  <li role="presentation" class="tab_one">
+                    <button href="#" id="tab1" class="inner_tab1" role="tab" aria-controls="tab-panel1" aria-selected="true">
+                      서울 채식 지도
+                    </button>
+                  </li>
+                  <li role="presentation" class="tab_two">
+                    <button href="#" id="tab2" class="inner_tab2" role="tab" aria-controls="tab-panel2" aria-selected="false" tabindex="-1">
+                      검색
+                    </button>
+                  </li>
+                  <li role="presentation" class="tab_thr">
+                    <button href="#" id="tab3" class="inner_tab3" role="tab" aria-controls="tab-panel3" aria-selected="false" tabindex="-1">
+                      채식의 종류
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab_content">
+              <div id="tab-panel1" class="tabpanel" role="tabpanel" aria-labelledby="tab1" tabindex="0">
+                <div class="tabpanel1-main">
+                  <div>
+                    <button class="district" id="dosim">도심권</button>
+                    <button class="district" id="dongnam">동남권</button>
+                    <!--서초구,강남구,송파구,강동구-->
+                    <button class="district" id="seonam">서남권</button>
+                    <!--양천구,강서구,구로구,금천구,영등포구,동작구,관악구-->
+                    <button class="district" id="seobook">서북권</button>
+                    <!--은평구,서대문구,마포구-->
+                    <button class="district" id="dongbook">동북권</button>
+                    <!--성북구,광진구,동대문구,중랑구,성북구,강북구,도봉구,노원구-->
+                  </div>
+                  <div class="detail">
+                    <!--클릭시 나오는 탭(js로 toggle구현)-->
+                    <div class="a" style="display: none">
+                      <!--도심권 line22-->
+                      <button type="submit" value="종로구" name="region" class="detailgu" id="jongno-gu" onclick="showShop(this)">
+                        종로구
+                      </button>
+                      <!--각각 버튼 클릭시 위치표시될 수 있게-->
+                      <button type="submit" value="중구" name="region" class="detailgu" id="jung-gu" onclick="showShop(this)">중구</button>
+                      <button type="submit" value="용산구" name="region" class="detailgu" id="yongsan-gu" onclick="showShop(this)">
+                        용산구
+                      </button>
+                    </div>
+                    <div class="b" style="display: none">
+                      <button type="submit" value="서초구" name="region" class="detailgu" id="seocho-gu" onclick="showShop(this)">
+                        서초구
+                      </button>
+                      <button type="submit" value="강남구" name="region" class="detailgu" id="gangnam-gu" onclick="showShop(this)">
+                        강남구
+                      </button>
+                      <button type="submit" value="송파구" name="region" class="detailgu" id="songpa-gu" onclick="showShop(this)">
+                        송파구
+                      </button>
+                      <button type="submit" value="강동구" name="region" class="detailgu" id="gangdong-gu" onclick="showShop(this)">
+                        강동구
+                      </button>
+                    </div>
+                    <div class="c" style="display: none">
+                      <button type="submit" value="양천구" name="region" class="detailgu" id="yangcheon-gu" onclick="showShop(this)">
+                        양천구
+                      </button>
+                      <button type="submit" value="강서구" name="region" class="detailgu" id="gangseo-gu" onclick="showShop(this)">
+                        강서구
+                      </button>
+                      <button type="submit" value="구로구" name="region" class="detailgu" id="guro-gu" onclick="showShop(this)">
+                        구로구
+                      </button>
+                      <button type="submit" value="금천구" name="region" class="detailgu" id="geumcheon-gu" onclick="showShop(this)">
+                        금천구
+                      </button>
+                      <button type="submit" value="영등포구" name="region" class="detailgu" id="yeongdeungpo-gu" onclick="showShop(this)">
+                        영등포구
+                      </button>
+                      <button type="submit" value="동작구" name="region" class="detailgu" id="dongjak" onclick="showShop(this)">
+                        동작구
+                      </button>
+                      <button type="submit" value="관악구" name="region" class="detailgu" id="gwanak-gu" onclick="showShop(this)">
+                        관악구
+                      </button>
+                    </div>
+                    <div class="d" style="display: none">
+                      <button type="submit" value="은평구" name="region" class="detailgu" id="eunpyeong-gu" onclick="showShop(this)">
+                        은평구
+                      </button>
+                      <button type="submit" value="서대문구" name="region" class="detailgu" id="seodaemun-gu" onclick="showShop(this)">
+                        서대문구
+                      </button>
+                      <button type="submit" value="마포구" name="region" class="detailgu" id="mapo-gu" onclick="showShop(this)">
+                        마포구
+                      </button>
+                    </div>
+                    <div class="e" style="display: none">
+                      <button type="submit" value="성동구" name="region" class="detailgu" id="seongdong-gu" onclick="showShop(this)">
+                        성동구
+                      </button>
+                      <button type="submit" value="광진구" name="region" class="detailgu" id="gwangjin-gu" onclick="showShop(this)">
+                        광진구
+                      </button>
+                      <button type="submit" value="동대문구" name="region" class="detailgu" id="dongdaemun-gu" onclick="showShop(this)">
+                        동대문구
+                      </button>
+                      <button type="submit" value="중랑구" name="region" class="detailgu" id="jungnang-gu" onclick="showShop(this)">
+                        중랑구
+                      </button>
+                      <button type="submit" value="성북구" name="region" class="detailgu" id="seongbuk-gu" onclick="showShop(this)">
+                        성북구
+                      </button>
+                      <button type="submit" value="강북구" name="region" class="detailgu" id="gangbuk-gu" onclick="showShop(this)">
+                        강북구
+                      </button>
+                      <button type="submit" value="도봉구" name="region" class="detailgu" id="dobong-gu" onclick="showShop(this)">
+                        도봉구
+                      </button>
+                      <button type="submit" value="노원구" name="region" class="detailgu" id="nowon-gu" onclick="showShop(this)">
+                        노원구
+                      </button>
+                    </div>
+                    <div class="c" style="display: none">
+                      <button type="submit" value="양천구" name="region" class="detailgu" id="yangcheon-gu" onclick="showShop(this)">
+                        양천구
+                      </button>
+                      <button type="submit" value="강서구" name="region" class="detailgu" id="gangseo-gu" onclick="showShop(this)">
+                        강서구
+                      </button>
+                      <button type="submit" value="구로구" name="region" class="detailgu" id="guro-gu" onclick="showShop(this)">
+                        구로구
+                      </button>
+                      <button type="submit" value="금천구" name="region" class="detailgu" id="geumcheon-gu" onclick="showShop(this)">
+                        금천구
+                      </button>
+                      <button type="submit" value="영등포구" name="region" class="detailgu" id="yeongdeungpo-gu" onclick="showShop(this)">
+                        영등포구
+                      </button>
+                      <button type="submit" value="동작구" name="region" class="detailgu" id="dongjak" onclick="showShop(this)">
+                        동작구
+                      </button>
+                      <button type="submit" value="관악구" name="region" class="detailgu" id="gwanak-gu" onclick="showShop(this)">
+                        관악구
+                      </button>
+                    </div>
+                    <div class="d" style="display: none">
+                      <button type="submit" value="은평구" name="region" class="detailgu" id="eunpyeong-gu" onclick="showShop(this)">
+                        은평구
+                      </button>
+                      <button type="submit" value="서대문구" name="region" class="detailgu" id="seodaemun-gu" onclick="showShop(this)">
+                        서대문구
+                      </button>
+                      <button type="submit" value="마포구" name="region" class="detailgu" id="mapo-gu" onclick="showShop(this)">
+                        마포구
+                      </button>
+                    </div>
+                    <div class="e" style="display: none">
+                      <button type="submit" value="성동구" name="region" class="detailgu" id="seongdong-gu" onclick="showShop(this)">
+                        성동구
+                      </button>
+                      <button type="submit" value="광진구" name="region" class="detailgu" id="gwangjin-gu" onclick="showShop(this)">
+                        광진구
+                      </button>
+                      <button type="submit" value="동대문구" name="region" class="detailgu" id="dongdaemun-gu" onclick="showShop(this)">
+                        동대문구
+                      </button>
+                      <button type="submit" value="중랑구" name="region" class="detailgu" id="jungnang-gu" onclick="showShop(this)">
+                        중랑구
+                      </button>
+                      <button type="submit" value="성북구" name="region" class="detailgu" id="seongbuk-gu" onclick="showShop(this)">
+                        성북구
+                      </button>
+                      <button type="submit" value="강북구" name="region" class="detailgu" id="gangbuk-gu" onclick="showShop(this)">
+                        강북구
+                      </button>
+                      <button type="submit" value="도봉구" name="region" class="detailgu" id="dobong-gu" onclick="showShop(this)">
+                        도봉구
+                      </button>
+                      <button type="submit" value="노원구" name="region" class="detailgu" id="nowon-gu" onclick="showShop(this)">
+                        노원구
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <p>지도</p>
+                <div id="map" style="width: 60%; height: 350px"></div>
+                <p>리스트</p>
+                <ul id="list-box"></ul>
+              </div>
+              <div id="tab-panel2" class="tabpanel" role="tabpanel" aria-labelledby="tab2" hidden="" tabindex="0"></div>
+              <div id="tab-panel3" class="tabpanel" role="tabpanel" aria-labelledby="tab3" hidden="" tabindex="0"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer id="footer" role="contentinfo">
+        <div class="foot_logo"><img src="../static/img/logo.png" alt="" /></div>
+        <p>감사합니다</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<title> {{ region }}</title>
+
+{% if datas %}
+    <h1>{{ region }}가게 리스트</h1>
+    <ul>
+        {% for data in datas %}
+            <li><h3>상호명:{{ data['상호명'] }}</h3></li>
+            <li><h4>업종:{{ data['업종'] }}</h4></li>
+            <li><h4>자치구:{{ data['자치구'] }}</h4></li>
+            <li><h4>도로명주소:{{ data['도로명주소'] }}</h4></li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3> 현재 검색 가능 권역</h3>
+    <ul>
+        <li>동북권</li>
+        <li>동남권</li>
+        <li>도심권</li>
+        <li>서북권</li>
+        <li>서남권</li>
+    </ul>
+{% endif %}
